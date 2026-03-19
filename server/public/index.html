@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Network Test Panel - Professional Network Testing</title>
+  <link rel="stylesheet" href="css/styles.css">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+  <!-- Toast Container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- ==================== NAVBAR ==================== -->
+  <nav class="navbar">
+    <a href="#" class="logo">
+      <div class="logo-icon">⚡</div>
+      <span>NetTest Panel</span>
+    </a>
+    
+    <!-- Guest Navigation -->
+    <div id="navbarGuest" class="nav-buttons">
+      <button class="btn btn-secondary" id="loginBtn">Log Ind</button>
+      <button class="btn btn-primary" id="registerBtn">Opret Konto</button>
+    </div>
+    
+    <!-- User Navigation -->
+    <div id="navbarUser" class="nav-user hidden">
+      <span id="userName">Bruger</span>
+      <span id="roleBadge" class="user-badge badge-user">BRUGER</span>
+      <button class="btn btn-secondary" id="logoutBtn">Log Ud</button>
+    </div>
+  </nav>
+
+  <!-- ==================== LANDING PAGE ==================== -->
+  <div id="landingPage" class="landing-page">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Professionel Netværks Testning</h1>
+        <p>Test din netværksinfrastruktur med avancerede værktøjer. TCP, UDP, HTTP og mere - alt samlet ét sted.</p>
+        <div class="hero-buttons">
+          <button class="btn btn-primary btn-lg" onclick="document.getElementById('registerBtn').click()">Kom i Gang</button>
+          <button class="btn btn-secondary btn-lg" onclick="document.getElementById('methods').scrollIntoView({behavior: 'smooth'})">Se Metoder</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section">
+      <div class="section-title">
+        <h2>Funktioner</h2>
+        <p>Alt du behøver til professionel netværkstestning</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🚀</div>
+          <h3>Hurtig Testning</h3>
+          <p>Send testpakker hurtigt og effektivt til enhver måladresse</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Detaljerede Resultater</h3>
+          <p>Få omfattende statistik og analyser af dine tests</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>Sikker Platform</h3>
+          <p>Dine data er beskyttet med moderne sikkerhedsforanstaltninger</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">👥</div>
+          <h3>Brugerstyring</h3>
+          <p>Administrer brugere, planer og credits fra admin panelet</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🌐</div>
+          <h3>API Integration</h3>
+          <p>Forbind eksterne API'er for udvidet funktionalitet</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📈</div>
+          <h3>Historik & Statistik</h3>
+          <p>Se din testhistorik og følg med i dine statistikker</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Methods Section -->
+    <section id="methods" class="section">
+      <div class="section-title">
+        <h2>Test Metoder</h2>
+        <p>7 forskellige testmetoder til dine behov</p>
+      </div>
+      <div class="methods-grid">
+        <div class="method-card">
+          <div class="method-icon">🌊</div>
+          <h3>TCP Flood</h3>
+          <p>TCP pakke oversvømmelse test</p>
+        </div>
+        <div class="method-card">
+          <div class="method-icon">📡</div>
+          <h3>UDP Flood</h3>
+          <p>UDP pakke oversvømmelse test</p>
+        </div>
+        <div class="method-card">
+          <div class="method-icon">🌐</div>
+          <h3>HTTP GET</h3>
+          <p>HTTP GET anmodning test</p>
+        </div>
+        <div class="method-card">
+          <div class="method-icon">📝</div>
+          <h3>HTTP POST</h3>
+          <p>HTTP POST anmodning test</p>
+        </div>
+        <div class="method-card">
+          <div class="method-icon">⚡</div>
+          <h3>SYN Flood</h3>
+          <p>SYN pakke oversvømmelse test</p>
+        </div>
+        <div class="method-card">
+          <div class="method-icon">🔔</div>
+          <h3>ICMP Ping</h3>
+          <p>ICMP ping test</p>
+        </div>
+        <div class="method-card">
+          <div class="method-icon">📊</div>
+          <h3>Bandwidth Test</h3>
+          <p>Båndbredde belastningstest</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <h3 id="statTotalTests">0</h3>
+          <p>Tests Udført</p>
+        </div>
+        <div class="stat-item">
+          <h3 id="statTotalUsers">0</h3>
+          <p>Brugere</p>
+        </div>
+        <div class="stat-item">
+          <h3>7</h3>
+          <p>Test Metoder</p>
+        </div>
+        <div class="stat-item">
+          <h3>99.9%</h3>
+          <p>Oppetid</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>&copy; 2024 NetTest Panel. Alle rettigheder forbeholdes.</p>
+    </footer>
+  </div>
+
+  <!-- ==================== DASHBOARD ==================== -->
+  <div id="dashboard" class="dashboard">
+    <div class="dashboard-container">
+      <div class="dashboard-header">
+        <h1>Dashboard</h1>
+        <div class="user-info">
+          <span>Velkommen, <strong id="dashboardUserName">Bruger</strong>!</span>
+        </div>
+      </div>
+
+      <!-- Stats Cards -->
+      <div class="stats-cards">
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <div class="stat-card-icon purple">📊</div>
+          </div>
+          <h3 id="totalTests">0</h3>
+          <p>Total Tests</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <div class="stat-card-icon green">💰</div>
+          </div>
+          <h3 id="usedCredits">0</h3>
+          <p>Brugte Credits</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <div class="stat-card-icon blue">📋</div>
+          </div>
+          <h3 id="planType">Ingen Plan</h3>
+          <p>Nuværende Plan</p>
+          <div class="progress-container">
+            <div class="progress-label">
+              <span>Credits</span>
+              <span id="creditText">0 / 100</span>
+            </div>
+            <div class="progress-bar">
+              <div id="creditProgress" class="progress-fill" style="width: 0%"></div>
+            </div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <div class="stat-card-icon orange">📅</div>
+          </div>
+          <h3 id="daysRemaining">-</h3>
+          <p>Dage Tilbage på Plan</p>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="testTab">🚀 Send Test</button>
+        <button class="tab-btn" data-tab="historyTab">📜 Historik</button>
+        <button class="tab-btn" data-tab="settingsTab">⚙️ Indstillinger</button>
+        <button class="tab-btn hidden" id="adminTabBtn" data-tab="adminTab">👑 Admin</button>
+      </div>
+
+      <!-- Test Tab -->
+      <div id="testTab" class="tab-content active">
+        <div class="test-section">
+          <h2>🚀 Send Netværks Test</h2>
+          <form id="testForm" class="test-form">
+            <div class="form-group">
+              <label for="targetAddress">Mål Adresse (IP eller Domæne)</label>
+              <input type="text" id="targetAddress" class="form-control" placeholder="f.eks. 192.168.1.1 eller example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="port">Port (1-65535)</label>
+              <input type="number" id="port" class="form-control" placeholder="80" min="1" max="65535" required>
+            </div>
+            <div class="form-group">
+              <label for="duration">Varighed (sekunder, 1-3600)</label>
+              <input type="number" id="duration" class="form-control" placeholder="10" min="1" max="3600" required>
+            </div>
+            <div class="form-group">
+              <label for="testMethod">Test Metode</label>
+              <select id="testMethod" class="form-control form-select" required>
+                <option value="">Indlser metoder...</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <button type="submit" id="submitTest" class="btn btn-primary btn-lg">🚀 Send Test</button>
+            </div>
+          </form>
+
+          <!-- Test Result -->
+          <div id="testResult" class="test-result">
+            <h3>✅ Test Resultat</h3>
+            <div class="result-grid">
+              <div class="result-item">
+                <h4>Mål</h4>
+                <p id="resultTarget">-</p>
+              </div>
+              <div class="result-item">
+                <h4>Port</h4>
+                <p id="resultPort">-</p>
+              </div>
+              <div class="result-item">
+                <h4>Varighed</h4>
+                <p id="resultDuration">-</p>
+              </div>
+              <div class="result-item">
+                <h4>Pakker Sendt</h4>
+                <p id="resultPackets">-</p>
+              </div>
+              <div class="result-item">
+                <h4>Gns. Latency</h4>
+                <p id="resultLatency">-</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- History Tab -->
+      <div id="historyTab" class="tab-content">
+        <div class="admin-section">
+          <h2>📜 Test Historik</h2>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Metode</th>
+                  <th>Mål</th>
+                  <th>Port</th>
+                  <th>Varighed</th>
+                  <th>Status</th>
+                  <th>Dato</th>
+                </tr>
+              </thead>
+              <tbody id="testHistoryTable">
+                <tr><td colspan="6" style="text-align: center;">Indlæser...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Settings Tab -->
+      <div id="settingsTab" class="tab-content">
+        <div class="settings-section">
+          <h2>⚙️ Kontoindstillinger</h2>
+          
+          <div class="settings-item">
+            <div>
+              <label>Brugernavn</label>
+              <p id="settingsUsername">-</p>
+            </div>
+          </div>
+          <div class="settings-item">
+            <div>
+              <label>Email</label>
+              <p id="settingsEmail">-</p>
+            </div>
+          </div>
+          <div class="settings-item">
+            <div>
+              <label>Rolle</label>
+              <p id="settingsRole">-</p>
+            </div>
+          </div>
+          <div class="settings-item">
+            <div>
+              <label>Plan Type</label>
+              <p id="settingsPlan">-</p>
+            </div>
+          </div>
+          <div class="settings-item">
+            <div>
+              <label>Oprettelsesdato</label>
+              <p id="settingsCreated">-</p>
+            </div>
+          </div>
+          <div class="settings-item">
+            <div>
+              <label>Sidste Login</label>
+              <p id="settingsLastLogin">-</p>
+            </div>
+          </div>
+
+          <hr style="margin: 30px 0; border-color: var(--border-color);">
+
+          <h3 style="margin-bottom: 20px;">🔐 Skift Adgangskode</h3>
+          <form id="changePasswordForm" style="max-width: 400px;">
+            <div class="form-group">
+              <label for="currentPassword">Nuværende Adgangskode</label>
+              <input type="password" id="currentPassword" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="newPassword">Ny Adgangskode (min. 6 tegn)</label>
+              <input type="password" id="newPassword" class="form-control" required minlength="6">
+            </div>
+            <button type="submit" class="btn btn-primary">Opdater Adgangskode</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Admin Tab -->
+      <div id="adminTab" class="tab-content">
+        <!-- User Management -->
+        <div class="admin-section">
+          <h2>👥 Brugeradministration</h2>
+          <div class="admin-grid">
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Brugernavn</th>
+                    <th>Email</th>
+                    <th>Rolle</th>
+                    <th>Plan</th>
+                    <th>Credits</th>
+                    <th>Udløb</th>
+                    <th>Status</th>
+                    <th>Handlinger</th>
+                  </tr>
+                </thead>
+                <tbody id="usersTableBody">
+                  <tr><td colspan="9" style="text-align: center;">Indlæser...</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div>
+              <h3 style="margin-bottom: 20px;">➕ Opret Bruger</h3>
+              <form id="createUserForm">
+                <div class="form-group">
+                  <label>Brugernavn *</label>
+                  <input type="text" name="username" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label>Email</label>
+                  <input type="email" name="email" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label>Adgangskode *</label>
+                  <input type="password" name="password" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label>Rolle</label>
+                  <select name="role" class="form-control form-select">
+                    <option value="user">Bruger</option>
+                    <option value="admin">Admin</option>
+                    <option value="super_admin">Super Admin</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Plan Type</label>
+                  <select name="plan_type" class="form-control form-select">
+                    <option value="none">Ingen</option>
+                    <option value="normal">Normal</option>
+                    <option value="vip">VIP</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Credit Limit (0 = ubegrænset)</label>
+                  <input type="number" name="credit_limit" class="form-control" value="100" min="0">
+                </div>
+                <div class="form-group">
+                  <label>Plan Udløbsdato</label>
+                  <input type="datetime-local" name="plan_expires_at" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Opret Bruger</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Methods Management -->
+        <div class="admin-section">
+          <h2>🔧 Testmetode Administration</h2>
+          <div class="admin-grid">
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Navn</th>
+                    <th>Beskrivelse</th>
+                    <th>Farve</th>
+                    <th>Status</th>
+                    <th>Handlinger</th>
+                  </tr>
+                </thead>
+                <tbody id="methodsTableBody">
+                  <tr><td colspan="6" style="text-align: center;">Indlæser...</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div>
+              <h3 style="margin-bottom: 20px;">➕ Tilføj Metode</h3>
+              <form id="createMethodForm">
+                <div class="form-group">
+                  <label>Metode Navn *</label>
+                  <input type="text" name="name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label>Beskrivelse</label>
+                  <textarea name="description" class="form-control" rows="2"></textarea>
+                </div>
+                <div class="form-group">
+                  <label>Ikon (emoji)</label>
+                  <input type="text" name="icon" class="form-control" placeholder="🔧" maxlength="4">
+                </div>
+                <div class="form-group">
+                  <label>Farve (hex)</label>
+                  <input type="text" name="color" class="form-control" placeholder="#8b5cf6">
+                </div>
+                <div class="form-group">
+                  <label style="display: flex; align-items: center; gap: 10px;">
+                    <input type="checkbox" name="is_active" checked>
+                    Aktiv
+                  </label>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Tilføj Metode</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- API Endpoints Management -->
+        <div class="admin-section">
+          <h2>🌐 API Endpoint Administration</h2>
+          <div class="admin-grid">
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Metode</th>
+                    <th>API URL</th>
+                    <th>Brugernavn</th>
+                    <th>API Nøgle</th>
+                    <th>Prioritet</th>
+                    <th>Status</th>
+                    <th>Handlinger</th>
+                  </tr>
+                </thead>
+                <tbody id="endpointsTableBody">
+                  <tr><td colspan="8" style="text-align: center;">Indlæser...</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div>
+              <h3 style="margin-bottom: 20px;">➕ Tilføj Endpoint</h3>
+              <form id="createEndpointForm">
+                <div class="form-group">
+                  <label>Metode ID</label>
+                  <input type="number" name="method_id" class="form-control" placeholder="Valgfrit">
+                </div>
+                <div class="form-group">
+                  <label>API URL *</label>
+                  <input type="url" name="api_url" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label>Brugernavn</label>
+                  <input type="text" name="username" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label>API Nøgle</label>
+                  <input type="text" name="api_key" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label>Prioritet</label>
+                  <input type="number" name="priority" class="form-control" value="1" min="1">
+                </div>
+                <div class="form-group">
+                  <label style="display: flex; align-items: center; gap: 10px;">
+                    <input type="checkbox" name="is_active" checked>
+                    Aktiv
+                  </label>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Tilføj Endpoint</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODALS ==================== -->
+  
+  <!-- Login Modal -->
+  <div id="loginModal" class="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>🔑 Log Ind</h2>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="loginUsername">Brugernavn</label>
+            <input type="text" id="loginUsername" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="loginPassword">Adgangskode</label>
+            <input type="password" id="loginPassword" class="form-control" required>
+          </div>
+          <div id="loginError" class="form-error hidden"></div>
+          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Log Ind</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Register Modal -->
+  <div id="registerModal" class="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>📝 Opret Konto</h2>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="registerForm">
+          <div class="form-group">
+            <label for="registerUsername">Brugernavn *</label>
+            <input type="text" id="registerUsername" class="form-control" required minlength="3">
+          </div>
+          <div class="form-group">
+            <label for="registerEmail">Email (valgfri)</label>
+            <input type="email" id="registerEmail" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="registerPassword">Adgangskode *</label>
+            <input type="password" id="registerPassword" class="form-control" required minlength="6">
+          </div>
+          <div id="registerError" class="form-error hidden"></div>
+          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Opret Konto</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
